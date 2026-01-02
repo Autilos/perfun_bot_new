@@ -1,0 +1,31 @@
+name: Update Bestsellers
+
+on:
+  schedule:
+    - cron: '0 0 1 * *' # Runs at 00:00 on the 1st of every month
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  update-bestsellers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          pip install requests supabase python-dotenv
+
+      - name: Run update script
+        env:
+          PERFUN_CONSUMER_KEY: ${{ secrets.PERFUN_CONSUMER_KEY }}
+          PERFUN_CONSUMER_SECRET: ${{ secrets.PERFUN_CONSUMER_SECRET }}
+          PERFUN_SITE_URL: ${{ secrets.PERFUN_SITE_URL }}
+          FIRMY_SUPABASE_URL: ${{ secrets.FIRMY_SUPABASE_URL }}
+          FIRMY_SUPABASE_KEY: ${{ secrets.FIRMY_SUPABASE_KEY }}
+        run: python update_bestsellers_in_db.py

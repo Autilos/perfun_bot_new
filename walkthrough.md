@@ -43,7 +43,23 @@ Standardowe raporty WooCommerce bywają zawodne, dlatego przygotowałem skrypt `
 
 Możesz użyć tego skryptu do automatycznego oznaczania produktów jako "bestsellery" w Supabase. **Właśnie to zrobiłem** – Top 10 produktów ma teraz dodany znacznik `[BESTSELLER]` w opisie w bazie danych, co pozwala chatbotowi łatwo je filtrować.
 
-## 6. Rezultat
+## 6. Automatyzacja (Aktualizacja co 30 dni)
+Dodałem plik konfiguracji dla **GitHub Actions**, który sprawi, że aktualizacja bestsellerów będzie dziać się sama:
+- **Plik**: `.github/workflows/update_bestsellers.yml`
+- **Częstotliwość**: 1. dzień każdego miesiąca (można zmienić w pliku).
+
+**Aby to uruchomić:**
+1. Wejdź w ustawienia swojego repozytorium na GitHub (`Settings > Secrets and variables > Actions`).
+2. Dodaj `New repository secret` dla każdego klucza z pliku `.env`:
+   - `PERFUN_CONSUMER_KEY`
+   - `PERFUN_CONSUMER_SECRET`
+   - `PERFUN_SITE_URL`
+   - `FIRMY_SUPABASE_URL`
+   - `FIRMY_SUPABASE_KEY`
+
+Od teraz GitHub sam uruchomi skrypt raz w miesiącu, przeanalizuje sprzedaż i zaktualizuje bazę Supabase.
+
+## 7. Rezultat
 Baza produktów jest gotowa, a model danych w Supabase jest kompletny (scent_notes_combined, description z atrybutami). Lovable może teraz bezpośrednio odpytywać Supabase o produkty (search) oraz o statusy zamówień (Edge Function).
 
 ![Screenshot bazy](/Users/wojciechnowak/.gemini/antigravity/brain/9c521162-45ab-4655-9130-d9360db44ce7/projekt.png)
