@@ -41,7 +41,7 @@ Standardowe raporty WooCommerce bywają zawodne, dlatego przygotowałem skrypt `
 4. **Lattafa Asad Bourbon** (6 sztuk)
 5. **Rayhaan Italia** (6 sztuk)
 
-Możesz użyć tego skryptu do automatycznego oznaczania produktów jako "bestsellery" w Supabase.
+Możesz użyć tego skryptu do automatycznego oznaczania produktów jako "bestsellery" w Supabase. **Właśnie to zrobiłem** – Top 10 produktów ma teraz dodany znacznik `[BESTSELLER]` w opisie w bazie danych, co pozwala chatbotowi łatwo je filtrować.
 
 ## 6. Rezultat
 Baza produktów jest gotowa, a model danych w Supabase jest kompletny (scent_notes_combined, description z atrybutami). Lovable może teraz bezpośrednio odpytywać Supabase o produkty (search) oraz o statusy zamówień (Edge Function).
